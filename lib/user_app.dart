@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:user_app/core/constant/color_const.dart';
 import 'package:user_app/src/presentation/features/initial/splash_screen.dart';
+import 'package:user_app/src/presentation/states/bloc/users_bloc.dart';
+
+import 'injection.dart' as di;
 
 class UserApp extends StatelessWidget {
   const UserApp({super.key});
@@ -14,17 +18,23 @@ class UserApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
 
-    return GetMaterialApp(
-      title: 'Users',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(
-          background: Palette.skin,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => di.locator<UsersBloc>(),
         ),
+      ],
+      child: GetMaterialApp(
+        title: 'Users',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Palette.main).copyWith(
+            background: Palette.skin,
+          ),
+        ),
+        home: const SplashScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }
