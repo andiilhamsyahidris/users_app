@@ -5,9 +5,10 @@ import 'package:user_app/core/constant/asset_path.dart';
 import 'package:user_app/core/constant/color_const.dart';
 import 'package:user_app/core/constant/text_const.dart';
 import 'package:user_app/core/utils/custom_information.dart';
+import 'package:user_app/core/utils/route_observer.dart';
 import 'package:user_app/src/domain/entities/users_entity.dart';
 import 'package:user_app/src/presentation/features/menu/search_screen.dart';
-import 'package:user_app/src/presentation/states/bloc/users_bloc.dart';
+import 'package:user_app/src/presentation/states/users_bloc/users_bloc.dart';
 import 'package:user_app/src/presentation/widgets/add_user_modal.dart';
 import 'package:user_app/src/presentation/widgets/app_bar.dart';
 import 'package:user_app/src/presentation/widgets/user_card.dart';
@@ -23,14 +24,27 @@ class Homescreen extends StatefulWidget {
   State<Homescreen> createState() => _HomescreenState();
 }
 
-class _HomescreenState extends State<Homescreen> {
+class _HomescreenState extends State<Homescreen> with RouteAware {
   List<UsersEntity> sortData = [];
   bool isSorted = false;
 
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => context.read<UsersBloc>().add(FetchUsers()));
+    Future.microtask(() {
+      context.read<UsersBloc>().add(FetchUsers());
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void didPopNext() {
+    context.read<UsersBloc>().add(FetchUsers());
   }
 
   @override
@@ -182,5 +196,11 @@ class _HomescreenState extends State<Homescreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
   }
 }

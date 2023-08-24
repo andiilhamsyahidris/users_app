@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:user_app/core/constant/color_const.dart';
 import 'package:user_app/src/presentation/features/initial/splash_screen.dart';
-import 'package:user_app/src/presentation/states/bloc/users_bloc.dart';
+import 'package:user_app/src/presentation/states/add_user_bloc/add_user_bloc.dart';
 
 import 'injection.dart' as di;
+import 'src/presentation/states/users_bloc/users_bloc.dart';
 
 class UserApp extends StatelessWidget {
   const UserApp({super.key});
@@ -22,6 +23,9 @@ class UserApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => di.locator<UsersBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<AddUserBloc>(),
         ),
       ],
       child: GetMaterialApp(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:user_app/core/constant/color_const.dart';
 import 'package:user_app/core/constant/text_const.dart';
+import 'package:user_app/src/presentation/states/add_user_bloc/add_user_bloc.dart';
 import 'package:user_app/src/presentation/widgets/blur_background_container.dart';
 
 class AddUserModal extends StatelessWidget {
@@ -16,8 +18,8 @@ class AddUserModal extends StatelessWidget {
             vertical: 32,
             horizontal: 24,
           ),
-          height: 720,
-          margin: const EdgeInsets.symmetric(horizontal: 16),
+          height: MediaQuery.of(context).size.height,
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 22),
           decoration: const BoxDecoration(
             color: Palette.main,
             borderRadius: BorderRadius.all(
@@ -34,15 +36,15 @@ class AddUserModal extends StatelessWidget {
                   children: [
                     Text(
                       'Tambah Pengguna',
-                      style: kTextTheme.headlineLarge?.copyWith(
+                      style: kTextTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.w600, color: Palette.skin),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       child: Text(
                         'Tambahkan pengguna dengan mengisi form di bawah ini',
                         textAlign: TextAlign.center,
-                        style: kTextTheme.bodyLarge?.copyWith(
+                        style: kTextTheme.bodySmall?.copyWith(
                           color: Palette.skin,
                         ),
                       ),
@@ -122,9 +124,10 @@ class _AddUserFormState extends State<_AddUserForm> {
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
                   controller: _nameController,
+                  style: const TextStyle(color: Palette.skin),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Harap isi nama terlebih dahulu";
+                      return 'Harap isi nama terlebih dahulu';
                     }
                     return null;
                   },
@@ -140,13 +143,13 @@ class _AddUserFormState extends State<_AddUserForm> {
                       ),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    errorStyle: const TextStyle(height: 1),
+                    errorStyle: const TextStyle(height: 0.5),
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     prefixIcon: Padding(
@@ -181,6 +184,7 @@ class _AddUserFormState extends State<_AddUserForm> {
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
                   controller: _addressController,
+                  style: const TextStyle(color: Palette.skin),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Harap isi alamat terlebih dahulu";
@@ -199,13 +203,13 @@ class _AddUserFormState extends State<_AddUserForm> {
                       ),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    errorStyle: const TextStyle(height: 1),
+                    errorStyle: const TextStyle(height: 0.5),
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     prefixIcon: Padding(
@@ -241,6 +245,7 @@ class _AddUserFormState extends State<_AddUserForm> {
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
                   controller: _emailController,
+                  style: const TextStyle(color: Palette.skin),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Harap isi alamat email terlebih dahulu";
@@ -259,13 +264,13 @@ class _AddUserFormState extends State<_AddUserForm> {
                       ),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    errorStyle: const TextStyle(height: 1),
+                    errorStyle: const TextStyle(height: 0.5),
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     prefixIcon: Padding(
@@ -301,6 +306,7 @@ class _AddUserFormState extends State<_AddUserForm> {
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
                   controller: _phoneNumberController,
+                  style: const TextStyle(color: Palette.skin),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Harap isi nomor hp terlebih dahulu";
@@ -319,13 +325,13 @@ class _AddUserFormState extends State<_AddUserForm> {
                       ),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    errorStyle: const TextStyle(height: 1),
+                    errorStyle: const TextStyle(height: 0.5),
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     prefixIcon: Padding(
@@ -361,6 +367,7 @@ class _AddUserFormState extends State<_AddUserForm> {
                 padding: const EdgeInsets.only(top: 8, bottom: 16),
                 child: TextFormField(
                   controller: _cityController,
+                  style: const TextStyle(color: Palette.skin),
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Harap isi kota terlebih dahulu";
@@ -379,13 +386,13 @@ class _AddUserFormState extends State<_AddUserForm> {
                       ),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    errorStyle: const TextStyle(height: 1),
+                    errorStyle: const TextStyle(height: 0.5),
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Palette.skin),
+                      borderSide: const BorderSide(color: Colors.red),
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     prefixIcon: Padding(
@@ -412,7 +419,9 @@ class _AddUserFormState extends State<_AddUserForm> {
                 ),
               ),
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () async {
+                  addingUser(context);
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Palette.skin,
                   minimumSize: const Size(double.infinity, 56),
@@ -440,5 +449,23 @@ class _AddUserFormState extends State<_AddUserForm> {
         ),
       ],
     );
+  }
+
+  void addingUser(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    if (_formKey.currentState!.validate()) {
+      context.read<AddUserBloc>().add(
+            AddUser(
+                _addressController.text,
+                _nameController.text,
+                _emailController.text,
+                _phoneNumberController.text,
+                _cityController.text),
+          );
+
+      Future.delayed(const Duration(seconds: 1), () {
+        Get.back();
+      });
+    }
   }
 }

@@ -4,5 +4,11 @@ import 'package:user_app/src/domain/entities/users_entity.dart';
 
 abstract class UsersRepository {
   Future<Either<Failure, List<UsersEntity>>> getAllUsers();
-  Future<Either<Failure, String>> addUsers(UsersEntity users);
+  Future<Either<Failure, String>> addUsers(
+    String? name,
+    String? address,
+    String? email,
+    String? phoneNumber,
+    String? city,
+  );
 }

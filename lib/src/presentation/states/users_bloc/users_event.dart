@@ -5,9 +5,3 @@ abstract class UsersEvent {
 }
 
 class FetchUsers extends UsersEvent {}
-
-class AddUser extends UsersEvent {
-  final UsersEntity usersEntity;
-
-  const AddUser(this.usersEntity);
-}

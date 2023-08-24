@@ -5,7 +5,7 @@ import 'package:user_app/core/constant/asset_path.dart';
 import 'package:user_app/core/constant/color_const.dart';
 import 'package:user_app/core/utils/custom_information.dart';
 import 'package:user_app/src/domain/entities/users_entity.dart';
-import 'package:user_app/src/presentation/states/bloc/users_bloc.dart';
+import 'package:user_app/src/presentation/states/users_bloc/users_bloc.dart';
 import 'package:user_app/src/presentation/widgets/app_bar.dart';
 import 'package:user_app/src/presentation/widgets/user_card.dart';
 

@@ -8,7 +8,13 @@ import 'package:user_app/src/data/models/users_response.dart';
 
 abstract class UsersDatasource {
   Future<List<UsersModel>> getAllUsers();
-  Future<String> addUsers(UsersModel usersModel);
+  Future<String> addUsers(
+    String? name,
+    String? address,
+    String? email,
+    String? phoneNumber,
+    String? city,
+  );
 }
 
 class UsersDatasourceImpl implements UsersDatasource {
@@ -30,14 +36,20 @@ class UsersDatasourceImpl implements UsersDatasource {
   }
 
   @override
-  Future<String> addUsers(UsersModel usersModel) async {
+  Future<String> addUsers(
+    String? name,
+    String? address,
+    String? email,
+    String? phoneNumber,
+    String? city,
+  ) async {
     final response =
         await client.post(Uri.parse('${ApiService.baseurl}user'), body: {
-      'name': usersModel.name,
-      'address': usersModel.address,
-      'email': usersModel.email,
-      'phoneNumber': usersModel.phoneNumber,
-      'city': usersModel.city,
+      'name': name,
+      'address': address,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'city': city,
     });
     if (response.statusCode == 200) {
       return 'Added Users';

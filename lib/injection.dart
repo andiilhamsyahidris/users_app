@@ -5,7 +5,8 @@ import 'package:user_app/src/data/repositories/users_repository_impl.dart';
 import 'package:user_app/src/domain/repositories/users_repository.dart';
 import 'package:user_app/src/domain/usecases/add_user.dart';
 import 'package:user_app/src/domain/usecases/get_all_users.dart';
-import 'package:user_app/src/presentation/states/bloc/users_bloc.dart';
+import 'package:user_app/src/presentation/states/add_user_bloc/add_user_bloc.dart';
+import 'package:user_app/src/presentation/states/users_bloc/users_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -27,8 +28,8 @@ void init() {
   locator.registerLazySingleton(() => InsertUser(repository: locator()));
 
   // BloC
-  locator.registerFactory(
-      () => UsersBloc(getAllUsers: locator(), addUser: locator()));
+  locator.registerFactory(() => UsersBloc(getAllUsers: locator()));
+  locator.registerFactory(() => AddUserBloc(addUser: locator()));
 
   // External
   locator.registerLazySingleton(() => http.Client());
