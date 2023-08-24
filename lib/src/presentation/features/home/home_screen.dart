@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:user_app/core/constant/asset_path.dart';
 import 'package:user_app/core/constant/color_const.dart';
 import 'package:user_app/core/constant/text_const.dart';
+import 'package:user_app/core/utils/custom_information.dart';
+import 'package:user_app/src/presentation/features/menu/search_screen.dart';
 import 'package:user_app/src/presentation/states/bloc/users_bloc.dart';
 import 'package:user_app/src/presentation/widgets/app_bar.dart';
 import 'package:user_app/src/presentation/widgets/user_card.dart';
@@ -44,7 +47,7 @@ class _HomescreenState extends State<Homescreen> {
           Padding(
             padding: const EdgeInsets.all(6),
             child: InkWell(
-              onTap: () {},
+              onTap: () => Get.to(const SearchScreen()),
               child: const Icon(
                 Icons.search,
                 color: Palette.main,
@@ -103,7 +106,11 @@ class _HomescreenState extends State<Homescreen> {
                         child: Text('Terjadi Kesalahan'),
                       );
                     } else {
-                      return Container();
+                      return CustomInformation(
+                        asset: AssetPath.getVectors('empty.svg'),
+                        title: 'Data tidak Ditemukan',
+                        subtitle: 'Data is Empty',
+                      );
                     }
                   },
                 ),

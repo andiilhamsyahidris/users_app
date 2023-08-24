@@ -13,7 +13,6 @@ void init() {
   locator.registerLazySingleton<UsersDatasource>(
     () => UsersDatasourceImpl(
       client: locator(),
-      usersDb: locator(),
     ),
   );
 

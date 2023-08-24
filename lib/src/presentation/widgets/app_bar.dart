@@ -5,11 +5,13 @@ import 'package:user_app/core/constant/text_const.dart';
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
+  final Widget? leading;
 
   const MyAppBar({
     super.key,
     this.title = '',
     this.actions,
+    this.leading,
   });
 
   @override
@@ -24,6 +26,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: Palette.main,
         ),
       ),
+      leading: leading,
       actions: actions,
       backgroundColor: Palette.skin,
     );
