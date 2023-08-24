@@ -23,6 +23,15 @@ class UsersModel extends Equatable {
         phoneNumber: json['phoneNumber'],
         city: json['city'],
       );
+
+  factory UsersModel.fromEntity(UsersEntity user) => UsersModel(
+        name: user.name,
+        address: user.address,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        city: user.city,
+      );
+
   Map<String, dynamic> toJson() => {
         'name': name,
         'address': address,

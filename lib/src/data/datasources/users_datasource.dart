@@ -8,6 +8,7 @@ import 'package:user_app/src/data/models/users_response.dart';
 
 abstract class UsersDatasource {
   Future<List<UsersModel>> getAllUsers();
+  Future<String> addUsers(UsersModel usersModel);
 }
 
 class UsersDatasourceImpl implements UsersDatasource {
@@ -23,6 +24,23 @@ class UsersDatasourceImpl implements UsersDatasource {
 
     if (response.statusCode == 200) {
       return UsersResponse.fromJson(json.decode(response.body)).userList;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<String> addUsers(UsersModel usersModel) async {
+    final response =
+        await client.post(Uri.parse('${ApiService.baseurl}user'), body: {
+      'name': usersModel.name,
+      'address': usersModel.address,
+      'email': usersModel.email,
+      'phoneNumber': usersModel.phoneNumber,
+      'city': usersModel.city,
+    });
+    if (response.statusCode == 200) {
+      return 'Added Users';
     } else {
       throw ServerException();
     }

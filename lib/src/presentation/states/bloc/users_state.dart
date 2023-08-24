@@ -28,3 +28,21 @@ class UsersHasData extends UsersState {
   @override
   List<Object> get props => [resultUsers];
 }
+
+class InsertUserSuccess extends UsersState {
+  final String successMessage;
+
+  const InsertUserSuccess(this.successMessage);
+
+  @override
+  List<Object> get props => [successMessage];
+}
+
+class InsertUserFailed extends UsersState {
+  final String failureMessage;
+
+  const InsertUserFailed(this.failureMessage);
+
+  @override
+  List<Object> get props => [failureMessage];
+}
